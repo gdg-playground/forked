@@ -15,5 +15,8 @@
   },
   "trustedDependencies": [
     "@biomejs/biome"
-  ]
+  ],
+  "dependencies": {
+    "postgres": "^3.4.5"
+  }
 }
