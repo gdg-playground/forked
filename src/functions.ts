@@ -12,8 +12,12 @@ export async function getCount() {
 }
 
 export async function incrementCount() {
-  const [{ count }] =
-    await sql`INSERT INTO counter (key, count) VALUES (1, 1) ON CONFLICT (key) DO UPDATE SET count = count + 1 RETURNING count`;
+  const [{ count }] = await sql`INSERT INTO counter (key, count) 
+    VALUES (1, 1)
+    ON CONFLICT (key)
+    DO UPDATE SET count = counter.count + 1 
+    RETURNING counter.count;
+  `;
 
   return count;
 }
