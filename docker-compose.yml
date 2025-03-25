@@ -18,7 +18,7 @@ services:
       retries: 5
 
   counter:
-    image: ghcr.io/kane50613/cloud-native-playground:latest
+    image: ghcr.io/gdg-playground/forked:latest
     # image: cloud-native-playground
     restart: always
     ports:
