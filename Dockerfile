@@ -14,4 +14,6 @@ WORKDIR /app
 COPY . .
 COPY --from=installer /app/node_modules node_modules
 
+EXPOSE 3000 
+
 ENTRYPOINT ["bun", "start"]

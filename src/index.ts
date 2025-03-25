@@ -11,7 +11,6 @@ await createCounter();
 
 const server = Bun.serve({
   port,
-  hostname: "0.0.0.0",
   routes: {
     async "/"() {
       const count = await getCount();
