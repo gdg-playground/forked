@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: counter_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - counter-net
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "counter_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  counter:
+    image: bun-counter
+    ports:
+      - "80:80"
+    environment:
+      POSTGRES_URL: "postgres://postgres:postgres@postgres:5432/counter_db"
+      PORT: 80
+    depends_on:
+      - postgres
+    networks:
+      - counter-net
+
+volumes:
+  pgdata:
+
+networks:
+  counter-net:
+    driver: overlay
+    
