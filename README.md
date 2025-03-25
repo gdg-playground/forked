@@ -8,8 +8,11 @@ This is a simple counter application that uses PostgreSQL as a database.
 bun src/index.ts
 ```
 
-## Compose
+## Swarm Stack
 
 ```bash
-docker compose up -d
+docker swarm init
+docker stack deploy --compose-file docker-compose.yml counter-stack
+
+docker stack rm counter-stack
 ```
